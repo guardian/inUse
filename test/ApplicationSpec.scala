@@ -25,13 +25,13 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
       service.calls("hello").length mustBe 0
 
-      service.registerCall("hello", ServiceCall("hello", new DateTime(), "testing"))
+      service.registerCall("hello", ServiceCall("hello", DateTime.now.getMillis, "testing"))
 
       service.calls("hello").length mustBe 1
 
       service.calls("hello")(0).data mustBe "testing"
 
-      service.registerCall("hello", ServiceCall("hello", new DateTime(), "testing 2"))
+      service.registerCall("hello", ServiceCall("hello", DateTime.now.getMillis, "testing 2"))
 
       service.calls("hello").length mustBe 2
 
