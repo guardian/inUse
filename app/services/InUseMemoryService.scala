@@ -1,6 +1,7 @@
 package services
 
 import models.ServiceCall
+import org.joda.time.DateTime
 
 object InUseMemoryService extends InUseService {
 
@@ -34,8 +35,13 @@ object InUseMemoryService extends InUseService {
 
   }
 
-  // string -> list
-
-  // map (x)
   override def getCalls(): Map[String, Seq[ServiceCall]] = calls
+
+  // stub data
+
+  registerService("example service")
+  registerService("empty service")
+  registerService("another service")
+  registerCall("example service", ServiceCall("example service", new DateTime(), "mock data"))
+
 }

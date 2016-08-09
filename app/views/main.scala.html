@@ -5,25 +5,59 @@
 <html lang="en">
     <head>
         <title>InUse</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
     </head>
     <body>
 
-        @data
+        <nav class="navbar navbar-default navbar-blue">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">InUse</a>
+                </div>
 
-        @for((service, records) <- data) {
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input id="filter-input" type="text" class="form-control" placeholder="Filter">
+                    </div>
+                </form>
 
-            <h4>@service</h4>
+            </div>
+        </nav>
 
-            @for(record <- records) {
+        <div class="container-fluid">
 
-                <p> @record.time - @record.data </p>
+            <div class="row">
 
-            }
+                <!-- main page content -->
 
-        }
+                <h2>Service Calls</h2>
+
+                @for((service, records) <- data) {
+
+                    <div class="servicebox well" data-service="@service">
+
+                        @if( records.nonEmpty) {
+                            <span class="label label-success sizer">@records.length</span>
+                        } else {
+                            <span class="label label-danger sizer">@records.length</span>
+                        }
+
+                        <span class="namer">@service</span>
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
 
 
     </body>
