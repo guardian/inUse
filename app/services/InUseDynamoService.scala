@@ -7,7 +7,7 @@ import org.joda.time.DateTime
 
 import scala.collection.JavaConversions._
 
-object DynamoInUseMemoryService extends InUseService {
+object InUseDynamoService extends InUseService {
 
   override def registerService(service: String): Unit = Dynamo.services.putItem(Service(service).toItem)
 
