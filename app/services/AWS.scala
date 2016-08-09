@@ -15,7 +15,7 @@ object AWS {
 object Dynamo {
 
   lazy val dynamoDb = new DynamoDB(AWS.dynamoClient)
-  lazy val services = dynamoDb.getTable("services") //TODO: Pass out to config
-  lazy val serviceCalls = dynamoDb.getTable("serviceRecords")  //TODO: Pass out to config
+  lazy val services = dynamoDb.getTable(Config.servicesTableName)
+  lazy val serviceCalls = dynamoDb.getTable(Config.serviceCallsTableName)
 
 }
