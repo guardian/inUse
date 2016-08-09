@@ -1,5 +1,5 @@
 
-@(data: Map[String, Seq[ServiceCall]])
+@(serviceName: String, calls: Seq[ServiceCall] )
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
 
     </head>
     <body>
@@ -41,27 +40,24 @@
 
                 <!-- main page content -->
 
-                <h2>Service Calls</h2>
+                <h2>Service Calls for @serviceName</h2>
 
-                @for((service, records) <- data) {
+                <div class="service-calls">
 
-                    <div class="servicebox well" data-service="@service">
+                    <hr/>
 
-                        <a href="/service/@service">
-                            <div class="title-area">
-                                @if( records.nonEmpty ) {
-                                    <span class="label label-success sizer">@records.length</span>
-                                } else {
-                                    <span class="label label-danger sizer">@records.length</span>
-                                }
+                    @if(calls.nonEmpty) {
+                        @for(serviceCall <- calls) {
+                            <h5>@serviceCall.createdAt</h5>
+                            <div class="well">@serviceCall.data</div>
+                        }
+                    } else {
+                        <h5>No calls have been made to this service</h5>
+                    }
 
-                                <span class="namer">@service</span>
-                            </div>
-                        </a>
+                </div>
 
-                    </div>
 
-                }
 
             </div>
 

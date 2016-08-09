@@ -32,7 +32,6 @@ object InUseMemoryService extends InUseService {
 
     }
 
-
   }
 
   // string -> list
@@ -46,5 +45,7 @@ object InUseMemoryService extends InUseService {
   registerService("empty service")
   registerService("another service")
   registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "mock data"))
+  registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "mock data"))
+  registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "some more data that was sent"))
 
 }

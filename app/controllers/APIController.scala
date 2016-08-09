@@ -3,11 +3,11 @@ package controllers
 import models.ServiceCall
 import org.joda.time.DateTime
 import play.api.mvc._
-import services.{DynamoInUseMemoryService, InUseService}
+import services.{InUseDynamoService, InUseService}
 
 class APIController  extends Controller {
 
-  val backend: InUseService = DynamoInUseMemoryService
+  val backend: InUseService = InUseDynamoService
 
   // PUT request
   def addService(service: String) = Action {
