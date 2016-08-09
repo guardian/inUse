@@ -7,16 +7,14 @@ import org.joda.time.DateTime
 
 import scala.collection.JavaConversions._
 
-object DynamoInUseMemoryService extends InUseService {
+object InUseDynamoService extends InUseService {
 
   override def registerService(service: String): Unit = Dynamo.services.putItem(Service(service).toItem)
 
   override def registerCall(name: String, record: ServiceCall): Unit = {
 
     doesServiceExist(name) match {
-      case true =>
-        println(record.toItem)
-        Dynamo.serviceCalls.putItem(record.toItem)
+      case true => Dynamo.serviceCalls.putItem(record.toItem)
       case false => throw new ResourceNotFoundException(s"Unable to locate $name in services")
     }
 

@@ -13,5 +13,16 @@ class IndexController  extends Controller {
 
   }
 
+  def service(service: String) = Action {
+
+    val backend = InUseMemoryService
+
+    backend.getCalls().get(service) match {
+      case Some(calls) => Ok(views.html.service(service, calls))
+      case None => Ok(views.html.service(service, Seq()))
+    }
+
+  }
+
 
 }
