@@ -6,7 +6,7 @@ GET     /                             controllers.IndexController.index
 PUT /api/v1/services/:service         controllers.APIController.addService(service: String)
 
 # add a new call against the service
-POST /api/v1/services/:service        controllers.APIController.addRecord(service: String)
+POST /api/v1/services/:service/records        controllers.APIController.addRecord(service: String)
 
 ## get list of services
 #GET /api/v1/services/                 controllers.APIController.index
