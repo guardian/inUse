@@ -2,7 +2,7 @@ package services
 
 import models.ServiceCall
 
-class InUseMemoryService() extends InUseService {
+object InUseMemoryService extends InUseService {
 
   var calls: Map[String, Seq[ServiceCall]] = Map()
 
@@ -37,8 +37,5 @@ class InUseMemoryService() extends InUseService {
   // string -> list
 
   // map (x)
-
-
-
-
+  override def getCalls(): Map[String, Seq[ServiceCall]] = calls
 }

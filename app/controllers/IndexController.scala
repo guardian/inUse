@@ -1,12 +1,15 @@
 package controllers
 
 import play.api.mvc._
+import services.InUseMemoryService
 
 class IndexController  extends Controller {
 
   def index = Action {
 
-    Ok(views.html.main("InUse"))
+    val backend = InUseMemoryService
+
+    Ok(views.html.main(backend.getCalls()))
 
   }
 

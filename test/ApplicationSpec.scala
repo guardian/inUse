@@ -1,8 +1,6 @@
 import models.ServiceCall
 import org.joda.time.DateTime
 import org.scalatestplus.play._
-import play.api.test._
-import play.api.test.Helpers._
 import services.InUseMemoryService
 
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
@@ -11,7 +9,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "register services" in  {
 
-      val service = new InUseMemoryService()
+      val service = InUseMemoryService
 
       service.registerService("hello")
 
@@ -21,15 +19,21 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "registers calls" in {
 
-      val service = new InUseMemoryService()
+      val service = InUseMemoryService
 
       service.registerService("hello")
 
       service.calls("hello").length mustBe 0
 
-      service.registerCall("hello", ServiceCall("hello", new DateTime(), ""))
+      service.registerCall("hello", ServiceCall("hello", new DateTime(), "testing"))
 
       service.calls("hello").length mustBe 1
+
+      service.calls("hello")(0).data mustBe "testing"
+
+      service.registerCall("hello", ServiceCall("hello", new DateTime(), "testing 2"))
+
+      service.calls("hello").length mustBe 2
 
     }
 

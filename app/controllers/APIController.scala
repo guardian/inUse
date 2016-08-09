@@ -11,8 +11,7 @@ import services.{InUseService, InUseMemoryService}
 
 class APIController  extends Controller {
 
-  val backend: InUseService = new InUseMemoryService()
-
+  val backend: InUseService = InUseMemoryService
 
   // PUT request
   def addService(service: String) = Action {
@@ -24,11 +23,11 @@ class APIController  extends Controller {
   }
 
   // POST request
-  def addRecord(service: String) = Action {
+  def addRecord(service: String) = Action { request =>
 
     backend.registerCall(
       service,
-      ServiceCall(service, new DateTime(), "stub")
+      ServiceCall(service, new DateTime(), request.body.asText.getOrElse("") )
     )
 
     Ok("success")
