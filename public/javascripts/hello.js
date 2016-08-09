@@ -7,7 +7,7 @@ $(function(){
 
     $(".servicebox").each(function() {
 
-      if($(this).data("service").includes(service) || service === ""){
+      if($(this).data("service").includes(service) || service == ""){
         $(this).show();
       } else {
         $(this).hide();
@@ -15,12 +15,13 @@ $(function(){
 
     });
 
-    $()
+  };
 
+  $(".servicebox>.title-area").click(function(){
+    $(this).parent().find(".service-calls").toggle();
+  });
 
-  }
-
-  $("#filter-input").keydown(function(){
+  $("#filter-input").on("keyup", function(e){
     filterServices($("#filter-input").val().trim())
   })
 
