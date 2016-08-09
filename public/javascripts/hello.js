@@ -17,10 +17,6 @@ $(function(){
 
   };
 
-  $(".servicebox>.title-area").click(function(){
-    $(this).parent().find(".service-calls").toggle();
-  });
-
   $("#filter-input").on("keyup", function(e){
     filterServices($("#filter-input").val().trim())
   })

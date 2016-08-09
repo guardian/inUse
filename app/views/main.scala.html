@@ -47,36 +47,17 @@
 
                     <div class="servicebox well" data-service="@service">
 
-                        <div class="title-area">
-
-                            @if( records.nonEmpty ) {
-                                <span class="label label-success sizer">@records.length</span>
-                            } else {
-                                <span class="label label-danger sizer">@records.length</span>
-                            }
-
-                            <span class="namer">@service</span>
-
-                            <span class="caret"></span>
-
-                        </div>
-
-                        <div class="service-calls">
-
-                            <hr/>
-
-                            @if(records.nonEmpty) {
-                                @for(serviceCall <- records) {
-                                    <h5>@serviceCall.createdAt</h5>
-                                    <div class="well">@serviceCall.data</div>
+                        <a href="/service/@service">
+                            <div class="title-area">
+                                @if( records.nonEmpty ) {
+                                    <span class="label label-success sizer">@records.length</span>
+                                } else {
+                                    <span class="label label-danger sizer">@records.length</span>
                                 }
-                            } else {
 
-                                <h5>No calls have been made to this service</h5>
-
-                            }
-
-                        </div>
+                                <span class="namer">@service</span>
+                            </div>
+                        </a>
 
                     </div>
 
