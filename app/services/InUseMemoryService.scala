@@ -11,7 +11,6 @@ object InUseMemoryService extends InUseService {
     // append service into map with no records
 
     calls = calls + (service -> Seq())
-
   }
 
   override def registerCall(service: String, record: ServiceCall): Unit = {
@@ -37,5 +36,5 @@ object InUseMemoryService extends InUseService {
   // string -> list
 
   // map (x)
-  override def getCalls(): Map[String, Seq[ServiceCall]] = calls
+  def getCalls(): Map[String, Seq[ServiceCall]] = calls
 }
