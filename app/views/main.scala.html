@@ -63,7 +63,7 @@
 
                             @if(records.nonEmpty) {
                                 @for(serviceCall <- records) {
-                                    <h5>@serviceCall.time</h5>
+                                    <h5>@serviceCall.createdAt</h5>
                                     <div class="well">@serviceCall.data</div>
                                 }
                             } else {

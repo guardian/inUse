@@ -35,13 +35,16 @@ object InUseMemoryService extends InUseService {
 
   }
 
-  override def getCalls(): Map[String, Seq[ServiceCall]] = calls
+  // string -> list
+
+  // map (x)
+  def getCalls(): Map[String, Seq[ServiceCall]] = calls
 
   // stub data
 
   registerService("example service")
   registerService("empty service")
   registerService("another service")
-  registerCall("example service", ServiceCall("example service", new DateTime(), "mock data"))
+  registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "mock data"))
 
 }
