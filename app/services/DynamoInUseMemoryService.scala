@@ -14,9 +14,7 @@ object DynamoInUseMemoryService extends InUseService {
   override def registerCall(name: String, record: ServiceCall): Unit = {
 
     doesServiceExist(name) match {
-      case true =>
-        println(record.toItem)
-        Dynamo.serviceCalls.putItem(record.toItem)
+      case true => Dynamo.serviceCalls.putItem(record.toItem)
       case false => throw new ResourceNotFoundException(s"Unable to locate $name in services")
     }
 
