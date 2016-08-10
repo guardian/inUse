@@ -11,9 +11,11 @@ case class ServiceCall(name: String, createdAt: Long, data: String) {
 }
 
 object ServiceCall {
+
   implicit val serviceCallFormat: Format[ServiceCall] = Jsonx.formatCaseClassUseDefaults[ServiceCall]
 
   def fromItem(item: Item) = Json.parse(item.toJSON).as[ServiceCall]
 
   def fromJson(json: JsValue) = json.as[ServiceCall]
+
 }

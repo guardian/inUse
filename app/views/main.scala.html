@@ -45,7 +45,7 @@
 
                 @for((service, records) <- data) {
 
-                    <div class="servicebox well" data-service="@service">
+                    <div class="servicebox" data-service="@service">
 
                         <a href="/service/@service">
                             <div class="title-area">
@@ -56,6 +56,8 @@
                                 }
 
                                 <span class="namer">@service</span>
+
+                                <hr/>
                             </div>
                         </a>
 

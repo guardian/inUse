@@ -1,5 +1,5 @@
 
-.h1 {
+h1,h2 {
     margin-bottom: 1em;
 }
 
@@ -49,4 +49,8 @@
 
 .navbar-blue .navbar-brand {
     color: white;
+}
+
+.green-text {
+    color: #36a930;
 }
