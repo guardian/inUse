@@ -35,7 +35,7 @@
     "InstanceType": {
       "Description": "The instance type for the database nodes (typically smaller for prePROD)",
       "Type": "String",
-      "Default": "t2.nano"
+      "Default": "t2.micro"
     },
     "CertificateArn": {
       "Description": "Arn of TLS certificate",
