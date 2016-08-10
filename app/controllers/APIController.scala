@@ -5,7 +5,7 @@ import org.joda.time.DateTime
 import play.api.mvc._
 import services.{InUseDynamoService, InUseService}
 
-class APIController  extends Controller {
+class APIController extends Controller {
 
   val backend: InUseService = InUseDynamoService
 
