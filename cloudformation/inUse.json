@@ -257,7 +257,7 @@
           },
           {
             "Key": "App",
-            "Value": "inUse"
+            "Value": "in-use"
           }
         ]
       }
@@ -291,7 +291,7 @@
                   {
                     "Ref": "Stage"
                   },
-                  ":inUse"
+                  ":in-use"
                 ]
               ]
             },
@@ -313,7 +313,7 @@
           },
           {
             "Key": "App",
-            "Value": "inUse",
+            "Value": "in-use",
             "PropagateAtLaunch": "true"
           }
         ]

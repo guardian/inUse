@@ -17,11 +17,11 @@
     },
 
     "deployStep": {
-      "actionsBeforeApp": ["inUse.deploy"]
+      "actionsBeforeApp": ["in-use.deploy"]
     },
 
     "uploadStep": {
-      "actionsBeforeApp": ["inUse.uploadArtifacts"]
+      "actionsBeforeApp": ["in-use.uploadArtifacts"]
     }
   }
 }

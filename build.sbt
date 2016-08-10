@@ -1,4 +1,4 @@
-name := "inUse"
+name := "in-use"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala, RiffRaffArtifact, SbtWeb)
 
