@@ -5,13 +5,13 @@ import org.joda.time.DateTime
 
 object InUseMemoryService extends InUseService {
 
-  var calls: Map[String, Seq[ServiceCall]] = Map()
+  var calls: Map[String, List[ServiceCall]] = Map()
 
   override def registerService(service: String): Unit = {
 
     // append service into map with no records
 
-    calls = calls + (service -> Seq())
+    calls = calls + (service -> List())
 
   }
 
@@ -22,7 +22,7 @@ object InUseMemoryService extends InUseService {
     calls.get(service) match {
 
       case Some(records) =>  {
-        val newRecords: Seq[ServiceCall] = records :+ record
+        val newRecords: List[ServiceCall] = records :+ record
         calls = calls + (service -> newRecords)
       }
 
@@ -34,10 +34,8 @@ object InUseMemoryService extends InUseService {
 
   }
 
-  // string -> list
 
-  // map (x)
-  def getCalls(): Map[String, Seq[ServiceCall]] = calls
+  def getRecentServiceCallsMap(): Map[String, List[ServiceCall]] = calls
 
   // stub data
 
