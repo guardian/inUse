@@ -1,8 +1,6 @@
 name := "inUse"
 
-version := "1.0-SNAPSHOT"
-
-lazy val root = (project in file(".")).enablePlugins(PlayScala, RiffRaffArtifact)
+lazy val root = (project in file(".")).enablePlugins(PlayScala, RiffRaffArtifact, SbtWeb)
 
 scalaVersion := "2.11.7"
 
