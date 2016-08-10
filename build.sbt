@@ -27,3 +27,7 @@ riffRaffUploadArtifactBucket := Option("riffraff-artifact")
 riffRaffUploadManifestBucket := Option("riffraff-builds")
 riffRaffPackageName := s"editorial-tools:${name.value}"
 riffRaffManifestProjectName := riffRaffPackageName.value
+riffRaffPackageType := (packageZipTarball in config("universal")).value
+riffRaffArtifactResources ++= Seq(
+  riffRaffPackageType.value -> s"packages/${name.value}/${name.value}.tgz"
+)
