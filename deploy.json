@@ -1,7 +1,7 @@
 {
   "defaultStacks": ["flexible"],
   "packages": {
-    "inUse" : {
+    "in-use" : {
       "type": "autoscaling",
       "data": {
         "port": 9000,
