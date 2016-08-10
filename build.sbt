@@ -20,6 +20,8 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 riffRaffPackageType := (packageZipTarball in Universal).value
 
 def env(key: String): Option[String] = Option(System.getenv(key))
+name in Universal := normalizedName.value
+topLevelDirectory := Some(normalizedName.value)
 riffRaffBuildIdentifier := env("CIRCLE_BUILD_NUM").getOrElse("DEV")
 riffRaffUploadArtifactBucket := Option("riffraff-artifact")
 riffRaffUploadManifestBucket := Option("riffraff-builds")
