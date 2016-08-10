@@ -1,5 +1,5 @@
 
-@(serviceName: String, calls: Seq[ServiceCall] )
+@(serviceName: String, calls: Seq[ServiceCall], dateFormatter: Long=>String )
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +20,14 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
-                        <i class="fa fa-eye"></i>
-                        InUse
+                        <i class="fa fa-eye"></i> InUse
                     </a>
+
                 </div>
 
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input id="filter-input" type="text" class="form-control" placeholder="Filter">
+                        <input id="filter-input" type="text" class="form-control" placeholder="Filter" disabled>
                     </div>
                 </form>
 
@@ -40,7 +40,7 @@
 
                 <!-- main page content -->
 
-                <h2>Service Calls for @serviceName</h2>
+                <h2>Service Calls for <span class="green-text">@serviceName</span></h2>
 
                 <div class="service-calls">
 
@@ -48,8 +48,11 @@
 
                     @if(calls.nonEmpty) {
                         @for(serviceCall <- calls) {
-                            <h5>@serviceCall.createdAt</h5>
+
+
+                            <h5>@{dateFormatter(serviceCall.createdAt)}</h5>
                             <div class="well">@serviceCall.data</div>
+
                         }
                     } else {
                         <h5>No calls have been made to this service</h5>
