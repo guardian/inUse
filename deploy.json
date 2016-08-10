@@ -1,0 +1,27 @@
+{
+  "defaultStacks": ["flexible"],
+  "packages": {
+    "inUse" : {
+      "type": "autoscaling",
+      "data": {
+        "port": 9000,
+        "bucket": "composer-dist",
+        "publicReadAcl": false
+      }
+    }
+  },
+
+  "recipes": {
+    "default": {
+      "depends": ["uploadStep", "deployStep"]
+    },
+
+    "deployStep": {
+      "actionsBeforeApp": ["inUse.deploy"]
+    },
+
+    "uploadStep": {
+      "actionsBeforeApp": ["inUse.uploadArtifacts"]
+    }
+  }
+}

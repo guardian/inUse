@@ -1,8 +1,8 @@
-name := """inUse"""
+name := "inUse"
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file(".")).enablePlugins(PlayScala, RiffRaffArtifact)
 
 scalaVersion := "2.11.7"
 
@@ -18,3 +18,12 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
+riffRaffPackageType := (packageZipTarball in Universal).value
+
+def env(key: String): Option[String] = Option(System.getenv(key))
+riffRaffBuildIdentifier := env("CIRCLE_BUILD_NUM").getOrElse("DEV")
+riffRaffUploadArtifactBucket := Option("riffraff-artifact")
+riffRaffUploadManifestBucket := Option("riffraff-builds")
+riffRaffPackageName := s"editorial-tools:${name.value}"
+riffRaffManifestProjectName := riffRaffPackageName.value
