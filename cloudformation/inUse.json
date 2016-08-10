@@ -349,9 +349,6 @@
                 { "Fn::Join": [ "",
                   ["/opt/features/ssh-keys/initialise-keys-and-cron-job.sh -b github-team-keys -t ", {"Ref":"GithubTeamName"}, " -l || true\n"]
                 ]},
-                { "Fn::Join": [ "",
-                  ["aws s3 cp s3://composer-dist/flexible/", {"Ref":"Stage"}]
-                ]},
                 "/opt/features/native-packager/install.sh -b composer-dist -t tgz -s"
               ]
             ]
