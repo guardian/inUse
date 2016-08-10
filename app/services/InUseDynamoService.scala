@@ -41,7 +41,7 @@ object InUseDynamoService extends InUseService {
     Dynamo.serviceCalls.query(spec).map(ServiceCall.fromItem).toList
   }
 
-  def getRecentServiceCallsMap(): Map[String, List[ServiceCall]] = {
+  override def getRecentServiceCallsMap(): Map[String, List[ServiceCall]] = {
 
     getServices().map(service => {
       service.name -> getRecentServiceCalls(service.name).filter(call => call.name == service.name )
