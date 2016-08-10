@@ -25,7 +25,7 @@ object InUseDynamoService extends InUseService {
   }
 
   def doesServiceExist(name: String): Boolean = {
-    getServices().map(item => item.name).contains(name)
+    getServices().map(item => item.service).contains(name)
   }
 
   def getServices(): List[Service] = {
@@ -34,9 +34,9 @@ object InUseDynamoService extends InUseService {
 
   def getRecentServiceCalls(service: String, since: Long = DEFAULT_LIMIT): List[ServiceCall] = {
     val spec = new QuerySpec()
-      .withKeyConditionExpression("name = :v_name and createdAt > :v_since")
+      .withKeyConditionExpression("service = :v_service and createdAt > :v_since")
       .withValueMap(new ValueMap()
-        .withString(":v_name", service)
+        .withString(":v_service", service)
         .withNumber(":v_since", since))
     Dynamo.serviceCalls.query(spec).map(ServiceCall.fromItem).toList
   }
@@ -44,7 +44,7 @@ object InUseDynamoService extends InUseService {
   override def getRecentServiceCallsMap(): Map[String, List[ServiceCall]] = {
 
     getServices().map(service => {
-      service.name -> getRecentServiceCalls(service.name).filter(call => call.name == service.name )
+      service.service -> getRecentServiceCalls(service.service).filter(call => call.service == service.service )
     }).toMap
 
   }
