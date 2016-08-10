@@ -1,5 +1,5 @@
 
-@(serviceName: String, calls: Seq[ServiceCall] )
+@(serviceName: String, calls: Seq[ServiceCall], dateFormatter: Long=>String )
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +48,11 @@
 
                     @if(calls.nonEmpty) {
                         @for(serviceCall <- calls) {
-                            <h5>@serviceCall.createdAt</h5>
+
+
+                            <h5>@{dateFormatter(serviceCall.createdAt)}</h5>
                             <div class="well">@serviceCall.data</div>
+
                         }
                     } else {
                         <h5>No calls have been made to this service</h5>
