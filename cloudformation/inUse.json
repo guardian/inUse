@@ -24,6 +24,10 @@
       "Description": "Subnets to use in VPC for private EC2 instances eg. subnet-abcd1234",
       "Type": "List<AWS::EC2::Subnet::Id>"
     },
+    "PublicVpcSubnets": {
+      "Description": "Subnets to use in VPC for public EC2 instances eg. subnet-abcd1234",
+      "Type": "List<AWS::EC2::Subnet::Id>"
+    },
     "MachineImagesAMI": {
       "Description": "AMI id from the machine-images repo",
       "Type": "String"
@@ -208,7 +212,7 @@
             "IpProtocol": "tcp",
             "FromPort": 443,
             "ToPort": 443,
-            "CidrIp": "0.0.0.0/0"
+            "CidrIp": "77.91.248.0/21"
           }
         ]
       }
@@ -225,8 +229,7 @@
           }
         ],
         "CrossZone": true,
-        "Subnets": {"Ref": "PrivateVpcSubnets"},
-        "Scheme" : "internal",
+        "Subnets": {"Ref": "PublicVpcSubnets"},
         "Listeners": [
           {
             "LoadBalancerPort": "443",
