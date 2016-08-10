@@ -2,13 +2,13 @@ package controllers
 
 import org.joda.time.format.DateTimeFormat
 import play.api.mvc._
-import services.{InUseMemoryService, InUseService}
+import services.{InUseDynamoService, InUseService}
 
 class IndexController  extends Controller {
 
   def index = Action {
 
-    val backend: InUseService = InUseMemoryService
+    val backend: InUseService = InUseDynamoService
 
     Ok(views.html.main(backend.getRecentServiceCallsMap()))
 
@@ -16,7 +16,7 @@ class IndexController  extends Controller {
 
   def service(service: String) = Action {
 
-    val backend = InUseMemoryService
+    val backend = InUseDynamoService
 
     def dateFormatter(ms: Long): String = {
       val df = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss")
