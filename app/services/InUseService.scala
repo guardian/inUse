@@ -3,7 +3,7 @@ package services
 import com.google.inject.ImplementedBy
 import models.ServiceCall
 
-@ImplementedBy(classOf[InUseMemoryService])
+@ImplementedBy(classOf[InUseDynamoService])
 trait InUseService {
 
   def registerService(key: String)
