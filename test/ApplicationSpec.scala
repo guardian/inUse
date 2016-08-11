@@ -41,7 +41,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
       val item = ServiceCall("hello", DateTime.now.getMillis, "testing").toItem
 
-      item.get("name").toString() mustBe "hello"
+      item.get("service").toString() mustBe "hello"
 
     }
 
