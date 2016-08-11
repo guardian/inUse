@@ -12,7 +12,7 @@ import scala.collection.JavaConversions._
 @Singleton
 class InUseDynamoService extends InUseService {
 
-  val DEFAULT_LIMIT = DateTime.now.getMillis - 86400000
+  val DEFAULT_LIMIT = DateTime.now.getMillis - (86400000*30)
 
   override def registerService(service: String): Unit = {
     Dynamo.services.putItem(Service(service).toItem)
