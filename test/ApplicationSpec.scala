@@ -9,7 +9,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "register services" in  {
 
-      val service: InUseService = InUseMemoryService
+      val service: InUseService = new InUseMemoryService()
 
       service.registerService("hello")
 
@@ -19,7 +19,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "registers calls" in {
 
-      val service: InUseService = InUseMemoryService
+      val service: InUseService = new InUseMemoryService()
 
       service.registerService("hello")
 

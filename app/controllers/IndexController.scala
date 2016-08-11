@@ -2,21 +2,18 @@ package controllers
 
 import org.joda.time.format.DateTimeFormat
 import play.api.mvc._
-import services.{InUseDynamoService, InUseService}
+import services.InUseService
+import javax.inject.Inject
 
-class IndexController  extends Controller {
+class IndexController @Inject() (backend: InUseService) extends Controller {
 
   def index = Action {
-
-    val backend: InUseService = InUseDynamoService
 
     Ok(views.html.main(backend.getRecentServiceCallsMap()))
 
   }
 
   def service(service: String) = Action {
-
-    val backend = InUseDynamoService
 
     def dateFormatter(ms: Long): String = {
       val df = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss")

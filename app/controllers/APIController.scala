@@ -1,14 +1,14 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.Logger
 import models.ServiceCall
 import org.joda.time.DateTime
 import play.api.mvc._
-import services.{InUseDynamoService, InUseService}
+import services.InUseService
 
-class APIController extends Controller {
-
-  val backend: InUseService = InUseDynamoService
+class APIController @Inject() (backend: InUseService) extends Controller {
 
   // PUT request
   def addService(service: String) = Action {

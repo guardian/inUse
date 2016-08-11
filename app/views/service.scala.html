@@ -1,71 +1,30 @@
 
 @(serviceName: String, calls: Seq[ServiceCall], dateFormatter: Long=>String )
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>InUse</title>
+@layout() {
 
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <h2>Service Calls for <span class="green-text">@serviceName</span></h2>
 
-    </head>
-    <body>
+    <div class="service-calls">
 
-        <nav class="navbar navbar-default navbar-blue">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">
-                        <i class="fa fa-eye"></i> InUse
-                    </a>
+        <hr/>
 
-                </div>
-
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input id="filter-input" type="text" class="form-control" placeholder="Filter" disabled>
-                    </div>
-                </form>
-
-            </div>
-        </nav>
-
-        <div class="container-fluid">
-
-            <div class="row">
-
-                <!-- main page content -->
-
-                <h2>Service Calls for <span class="green-text">@serviceName</span></h2>
-
-                <div class="service-calls">
-
-                    <hr/>
-
-                    @if(calls.nonEmpty) {
-                        @for(serviceCall <- calls) {
+        @if(calls.nonEmpty) {
+            @for(serviceCall <- calls) {
 
 
-                            <h5>@{dateFormatter(serviceCall.createdAt)}</h5>
-                            <div class="well">@serviceCall.data</div>
+                <h5>@{
+                    dateFormatter(serviceCall.createdAt)
+                }</h5>
+                <div class="well">@serviceCall.data</div>
 
-                        }
-                    } else {
-                        <h5>No calls have been made to this service</h5>
-                    }
+            }
+        } else {
+            <h5>No calls have been made to this service</h5>
+        }
 
-                </div>
+    </div>
 
-
-
-            </div>
-
-        </div>
+}
 
 
-    </body>
-</html>

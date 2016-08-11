@@ -1,0 +1,50 @@
+
+@()(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InUse - record your calls</title>
+
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-blue">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-eye"></i>
+            InUse
+          </a>
+        </div>
+
+        <form class="navbar-form navbar-right">
+          <div class="form-group">
+            <input id="filter-input" type="text" class="form-control" placeholder="Filter">
+          </div>
+        </form>
+
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+      @content
+
+      </div>
+
+    </div>
+
+
+  </body>
+</html>

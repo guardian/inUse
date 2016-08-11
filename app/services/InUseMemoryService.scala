@@ -1,9 +1,12 @@
 package services
 
+import javax.inject.Singleton
+
 import models.ServiceCall
 import org.joda.time.DateTime
 
-object InUseMemoryService extends InUseService {
+@Singleton
+class InUseMemoryService extends InUseService {
 
   var calls: Map[String, List[ServiceCall]] = Map()
 

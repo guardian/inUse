@@ -1,7 +1,9 @@
 package services
 
+import com.google.inject.ImplementedBy
 import models.ServiceCall
 
+@ImplementedBy(classOf[InUseMemoryService])
 trait InUseService {
 
   def registerService(key: String)

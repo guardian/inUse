@@ -1,4 +1,6 @@
 package services
+import javax.inject.Singleton
+
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException
@@ -7,7 +9,8 @@ import org.joda.time.DateTime
 
 import scala.collection.JavaConversions._
 
-object InUseDynamoService extends InUseService {
+@Singleton
+class InUseDynamoService extends InUseService {
 
   val DEFAULT_LIMIT = DateTime.now.getMillis - 86400000
 
