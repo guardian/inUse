@@ -2,6 +2,7 @@
 # front end
 GET / controllers.IndexController.index
 GET /service/:service controllers.IndexController.service(service: String)
+GET /service/:service/search/:search controllers.IndexController.search(service: String, search: String)
 
 # register a new service that may be called
 POST /api/v1/services/:service controllers.APIController.addService(service: String)

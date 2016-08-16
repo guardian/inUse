@@ -1,6 +1,10 @@
+import controllers.IndexController
 import models.ServiceCall
 import org.joda.time.DateTime
 import org.scalatestplus.play._
+import play.api.test.FakeRequest
+import play.api.test._
+import play.api.test.Helpers._
 import services.{InUseMemoryService, InUseService}
 
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
@@ -42,6 +46,31 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
       val item = ServiceCall("hello", DateTime.now.getMillis, "testing").toItem
 
       item.get("service").toString() mustBe "hello"
+
+    }
+
+    "respond to the index Action" in {
+
+      val controller = new IndexController(new InUseMemoryService())
+
+      val result = controller.index()(FakeRequest())
+
+      status(result) mustBe OK
+
+    }
+
+    "respond to the search Action" in {
+
+      val controller = new IndexController(new InUseMemoryService())
+
+      val result = controller.search("example service", "three")(FakeRequest())
+
+      status(result) mustBe OK
+
+      contentAsString(result) must include("example service")
+      contentAsString(result) must include("three")
+      contentAsString(result) mustNot include("one")
+      contentAsString(result) mustNot include("two")
 
     }
 
