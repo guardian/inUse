@@ -11,13 +11,20 @@
 
         @if(calls.nonEmpty) {
             @for(serviceCall <- calls) {
-
-
                 <h5>@{
                     dateFormatter(serviceCall.createdAt)
                 }</h5>
-                <div class="well">@serviceCall.data</div>
-
+                <div class="well">
+                    <p><b>Category:</b> @serviceCall.toServiceData().category</p>
+                    <p><b>User:</b> @serviceCall.toServiceData().user</p>
+                    <p><b>Data:</b> @serviceCall.toServiceData().target</p>
+                    <p><b>Date/Time:</b> @serviceCall.toServiceData().datetime</p>
+                    <p><b>Function:</b> @serviceCall.toServiceData().function</p>
+                    <p><b>Package:</b> @serviceCall.toServiceData().pkg</p>
+                    <p><b>Description:</b> @serviceCall.toServiceData().description</p>
+                    <p><b>Asset:</b> @serviceCall.toServiceData().asset</p>
+                    <p><b>IP:</b> @serviceCall.toServiceData().ip</p>
+                </div>
             }
         } else {
             <h5>No calls have been made to this service</h5>
