@@ -8,12 +8,12 @@ case class ServiceData(
                         category: Option[String] = None,
                         user: Option[String] = None,
                         target: Option[String] = None,
-                        datetime: Option[String],
-                        function: Option[String],
-                        pkg: Option[String],
-                        description: Option[String],
-                        asset: Option[String],
-                        ip: Option[String]
+                        datetime: Option[String] = None,
+                        function: Option[String] = None,
+                        pkg: Option[String] = None,
+                        description: Option[String] = None,
+                        asset: Option[String] = None,
+                        ip: Option[String] = None
                       )
 
 object ServiceData {
