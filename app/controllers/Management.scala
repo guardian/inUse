@@ -13,4 +13,9 @@ class Management extends Controller {
     Ok("Ok")
   }
 
+  def deleteSingleService(service: String) = Action {
+    Dynamo.deleteSingleServiceAndAllCalls(service)
+    Ok("Ok")
+  }
+
 }
