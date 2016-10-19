@@ -4,6 +4,7 @@ import com.amazonaws.regions.{Region, Regions}
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.amazonaws.services.dynamodbv2.document._
 import models.{Service, ServiceCall}
+import play.api.Logger
 
 import scala.collection.JavaConversions._
 
@@ -37,6 +38,19 @@ object Dynamo {
     Dynamo.services.scan()
       .map(Service.fromItem)
       .foreach(e => deleteService(e.service))
+  }
+
+  def deleteSingleServiceAndAllCalls(service: String) = {
+    Logger.info(s"Deleting service: $service")
+    Dynamo.serviceCalls.scan()
+      .map(ServiceCall.fromItem)
+      .foreach(e =>
+        if (e.service==service) deleteServiceCall(e.service, e.createdAt))
+
+    Dynamo.services.scan()
+      .map(Service.fromItem)
+      .foreach(e =>
+        if (e.service==service) deleteService(e.service))
   }
 
 }

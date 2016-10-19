@@ -17,4 +17,8 @@ to create a new service (only need to do this once)
 register a call with a service (after it has been created)
 
     curl -XPOST -H "Content-Type:text/plain" -d "<ARBITRARY TEXT HERE>" https://inuse.gutools.co.uk/api/v1/services/<YOUR SERVICE NAME>/records
+
+to delete a service and its associated calls
+
+    curl -X DELETE https://inuse.gutools.co.uk/api/v1/services/<YOUR SERVICE NAME>
     
