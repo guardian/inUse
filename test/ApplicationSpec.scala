@@ -43,9 +43,9 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "be serializable to Dyno format" in {
 
-      val item = ServiceCall("hello", DateTime.now.getMillis, "testing").toItem
+      val item = ServiceCall("hello", DateTime.now.getMillis, "{\"testing\":\"blah\"}").toItem
 
-      item.get("service").toString() mustBe "hello"
+      item.getString("service") mustBe "hello"
 
     }
 
@@ -75,6 +75,5 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
     }
 
   }
-
 
 }
