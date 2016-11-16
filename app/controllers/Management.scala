@@ -1,5 +1,7 @@
 package controllers
 
+import java.io.File
+
 import play.api.mvc.{Action, Controller}
 import services.Dynamo
 
@@ -16,6 +18,11 @@ class Management extends Controller {
   def deleteSingleService(service: String) = Action {
     Dynamo.deleteSingleServiceAndAllCalls(service)
     Ok("Ok")
+  }
+
+  def generateCsv() = Action {
+    Dynamo.getServiceCallsCsv()
+    Ok.sendFile(new File("export.csv"))
   }
 
 }

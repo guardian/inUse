@@ -1,5 +1,7 @@
 package services
 
+import java.io.File
+
 import com.amazonaws.regions.{Region, Regions}
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.amazonaws.services.dynamodbv2.document._
@@ -51,6 +53,12 @@ object Dynamo {
       .map(Service.fromItem)
       .foreach(e =>
         if (e.service==service) deleteService(e.service))
+  }
+
+  def getServiceCallsCsv(): String = {
+    val util: DynamoUtil = new DynamoUtil(AWS.dynamoClient)
+    val file = util.export(Config.serviceCallsTableName, "")
+    scala.io.Source.fromFile("export.csv").mkString
   }
 
 }
