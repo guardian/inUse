@@ -126,7 +126,7 @@ public class DynamoUtil {
      */
     private List<String> getRows(List<Map<String, AttributeValue>> itemList) {
         List<String> rows = new ArrayList<>();
-        itemList.forEach((map)-> map.forEach((k,v)-> rows.add( convertToString(v) )));
+        itemList.forEach((map)-> map.forEach((k,v)-> rows.add( convertToString(v).replace("\"", "") )));
         return rows;
     }
 
