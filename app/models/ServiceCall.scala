@@ -12,7 +12,9 @@ object ServiceCall {
 
   implicit val serviceCallFormat: Format[ServiceCall] = Jsonx.formatCaseClassUseDefaults[ServiceCall]
 
-  def fromItem(item: Item) = Json.parse(item.toJSON).as[ServiceCall]
+  def fromItem(item: Item): ServiceCall = {
+    ServiceCall(item.getString("service"), item.getLong("createdAt"), item.toJSON)
+  }
 
   def fromJson(json: JsValue) = json.as[ServiceCall]
 
