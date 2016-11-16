@@ -8,5 +8,6 @@ object Config {
 
   val servicesTableName = config.getString("services_table_name")
   val serviceCallsTableName = config.getString("service_calls_table_name")
+  val homeDirectory = sys.env("HOME")
 
 }

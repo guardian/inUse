@@ -57,8 +57,8 @@ object Dynamo {
 
   def getServiceCallsCsv(): String = {
     val util: DynamoUtil = new DynamoUtil(AWS.dynamoClient)
-    val file = util.export(Config.serviceCallsTableName, "")
-    scala.io.Source.fromFile("export.csv").mkString
+    val file = util.export(Config.serviceCallsTableName, Config.homeDirectory)
+    scala.io.Source.fromFile(s"${Config.homeDirectory}/export.csv").mkString
   }
 
 }

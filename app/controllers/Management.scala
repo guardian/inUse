@@ -3,7 +3,7 @@ package controllers
 import java.io.File
 
 import play.api.mvc.{Action, Controller}
-import services.Dynamo
+import services.{Config, Dynamo}
 
 class Management extends Controller {
   def healthCheck = Action {
@@ -22,7 +22,7 @@ class Management extends Controller {
 
   def generateCsvDownload() = Action {
     Dynamo.getServiceCallsCsv()
-    Ok.sendFile(new File("export.csv"))
+    Ok.sendFile(new File(s"${Config.homeDirectory}/export.csv"))
   }
 
   def generateCsvString() = Action {
