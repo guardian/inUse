@@ -20,4 +20,5 @@ DELETE /api/v1/services/ controllers.Management.deleteAllHistory
 DELETE /api/v1/services/:service controllers.Management.deleteSingleService(service: String)
 
 # generate csv
-GET /csv controllers.Management.generateCsv()
+GET /csv controllers.Management.generateCsvDownload()
+GET /csv-view controllers.Management.generateCsvString()

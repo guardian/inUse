@@ -20,9 +20,14 @@ class Management extends Controller {
     Ok("Ok")
   }
 
-  def generateCsv() = Action {
+  def generateCsvDownload() = Action {
     Dynamo.getServiceCallsCsv()
     Ok.sendFile(new File("export.csv"))
+  }
+
+  def generateCsvString() = Action {
+    val content = Dynamo.getServiceCallsCsv()
+    Ok(content)
   }
 
 }
