@@ -5,9 +5,7 @@ import org.cvogt.play.json.Jsonx
 import play.api.libs.json.{Format, JsValue, Json}
 
 case class ServiceCall(service: String, createdAt: Long, data: String) {
-
-  def toItem = Item.fromJSON(Json.toJson(this).toString())
-
+  def toItem = Item.fromJSON(data).withString("service", service).withLong("createdAt", createdAt)
 }
 
 object ServiceCall {

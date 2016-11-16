@@ -18,11 +18,11 @@ class InUseDynamoService extends InUseService {
     Dynamo.services.putItem(Service(service).toItem)
   }
 
-  override def registerCall(name: String, record: ServiceCall): Unit = {
+  override def registerCall(serviceName: String, record: ServiceCall): Unit = {
 
-    doesServiceExist(name) match {
+    doesServiceExist(serviceName) match {
       case true => Dynamo.serviceCalls.putItem(record.toItem)
-      case false => throw new ResourceNotFoundException(s"Unable to locate $name in services")
+      case false => throw new ResourceNotFoundException(s"Unable to locate $serviceName in services")
     }
 
   }
