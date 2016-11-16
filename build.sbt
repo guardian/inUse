@@ -12,7 +12,10 @@ libraryDependencies ++= Seq(
   "joda-time" % "joda-time" % "2.9.4",
   "com.amazonaws" % "aws-java-sdk-s3" % "1.10.62",
   "com.amazonaws" % "aws-java-sdk-dynamodb" % "1.11.24",
-  "org.cvogt" %% "play-json-extensions" % "0.6.0"
+  "org.cvogt" %% "play-json-extensions" % "0.6.0",
+  "com.google.code.gson" % "gson" % "1.7.1",
+  "org.apache.commons" % "commons-csv" % "1.1"
+
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
