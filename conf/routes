@@ -10,6 +10,8 @@ POST /api/v1/services/:service controllers.APIController.addService(service: Str
 # add a new call against the service
 POST /api/v1/services/:service/records controllers.APIController.addRecord(service: String)
 
+GET /api/v1/servics/:service/records/csv controllers.CSVController.forService(service: String)
+
 # assets
 GET /assets/*file controllers.Assets.versioned(path="/public", file: Asset)
 
@@ -20,5 +22,6 @@ DELETE /api/v1/services/ controllers.Management.deleteAllHistory
 DELETE /api/v1/services/:service controllers.Management.deleteSingleService(service: String)
 
 # csv endpoints
+
 GET /csv controllers.CSVController.generateCsvDownload()
 GET /csv-view controllers.CSVController.generateCsvString()

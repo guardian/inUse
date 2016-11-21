@@ -1,9 +1,9 @@
-import controllers.IndexController
+import controllers.{CSVController, IndexController}
 import models.ServiceCall
 import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import org.scalatestplus.play._
 import play.api.test.FakeRequest
-import play.api.test._
 import play.api.test.Helpers._
 import services.{InUseMemoryService, InUseService}
 
@@ -71,6 +71,23 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
       contentAsString(result) must include("three")
       contentAsString(result) mustNot include("one")
       contentAsString(result) mustNot include("two")
+
+    }
+
+    "Be able to CSV some calls" in {
+
+      val controller = new CSVController(new InUseMemoryService())
+      val result = controller.forService("example service")(FakeRequest())
+
+      val today = DateTime.now.getMillis
+      val yesterday = DateTime.now.minusDays(1).getMillis
+
+      def millisToDate(ms: Long): String = DateTimeFormat.forPattern("yyyy-MM-dd").print(ms)
+
+      status(result) mustBe OK
+
+      contentAsString(result) must include(millisToDate(today)+",2")
+      contentAsString(result) must include(millisToDate(yesterday)+",1")
 
     }
 
