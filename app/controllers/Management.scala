@@ -1,9 +1,7 @@
 package controllers
 
-import java.io.File
-
 import play.api.mvc.{Action, Controller}
-import services.{Config, Dynamo}
+import services.Dynamo
 
 class Management extends Controller {
   def healthCheck = Action {
@@ -18,16 +16,6 @@ class Management extends Controller {
   def deleteSingleService(service: String) = Action {
     Dynamo.deleteSingleServiceAndAllCalls(service)
     Ok("Ok")
-  }
-
-  def generateCsvDownload() = Action {
-    Dynamo.getServiceCallsCsv()
-    Ok.sendFile(new File(s"${Config.homeDirectory}/export.csv"))
-  }
-
-  def generateCsvString() = Action {
-    val content = Dynamo.getServiceCallsCsv()
-    Ok(content)
   }
 
 }
