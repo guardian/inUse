@@ -40,13 +40,16 @@ class InUseMemoryService extends InUseService {
 
   def getRecentServiceCallsMap(): Map[String, List[ServiceCall]] = calls
 
+  val today = DateTime.now.getMillis
+  val yesterday = DateTime.now.minusDays(1).getMillis
+
   // stub data
 
   registerService("example service")
   registerService("empty service")
   registerService("another service")
-  registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "mock data one"))
-  registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "mock data two"))
-  registerCall("example service", ServiceCall("example service", DateTime.now.getMillis, "mock data three"))
+  registerCall("example service", ServiceCall("example service", today, "mock data one"))
+  registerCall("example service", ServiceCall("example service", today, "mock data two"))
+  registerCall("example service", ServiceCall("example service", yesterday, "mock data three"))
 
 }
