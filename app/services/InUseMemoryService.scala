@@ -48,8 +48,8 @@ class InUseMemoryService extends InUseService {
   registerService("example service")
   registerService("empty service")
   registerService("another service")
-  registerCall("example service", ServiceCall("example service", today, "mock data one"))
-  registerCall("example service", ServiceCall("example service", today, "mock data two"))
-  registerCall("example service", ServiceCall("example service", yesterday, "mock data three"))
+  registerCall("example service", ServiceCall("example service", today, "{\"user\": \"ted\"}"))
+  registerCall("example service", ServiceCall("example service", today, "{\"user\": \"bill\"}"))
+  registerCall("example service", ServiceCall("example service", yesterday, "{\"user\": \"rufus\"}"))
 
 }
