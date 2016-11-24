@@ -63,14 +63,14 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
       val controller = new IndexController(new InUseMemoryService())
 
-      val result = controller.search("example service", "three")(FakeRequest())
+      val result = controller.search("example service", "rufus")(FakeRequest())
 
       status(result) mustBe OK
 
       contentAsString(result) must include("example service")
-      contentAsString(result) must include("three")
-      contentAsString(result) mustNot include("one")
-      contentAsString(result) mustNot include("two")
+      contentAsString(result) must include("rufus")
+      contentAsString(result) mustNot include("bill")
+      contentAsString(result) mustNot include("ted")
 
     }
 
@@ -88,6 +88,24 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
       contentAsString(result) must include(millisToDate(today)+",2")
       contentAsString(result) must include(millisToDate(yesterday)+",1")
+
+    }
+
+    "Be able to CSV some calls with users" in {
+
+      val controller = new CSVController(new InUseMemoryService())
+      val result = controller.forServiceByUser("example service")(FakeRequest())
+
+      val today = DateTime.now.getMillis
+      val yesterday = DateTime.now.minusDays(1).getMillis
+
+      def millisToDate(ms: Long): String = DateTimeFormat.forPattern("yyyy-MM-dd").print(ms)
+
+      status(result) mustBe OK
+
+      contentAsString(result) must include(millisToDate(today)+",\"ted\",1")
+      contentAsString(result) must include(millisToDate(today)+",\"bill\",1")
+      contentAsString(result) must include(millisToDate(yesterday)+",\"rufus\",1")
 
     }
 
