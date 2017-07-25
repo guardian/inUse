@@ -198,7 +198,7 @@ Resources:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
       KeyName: !Ref 'KeyName'
-      ImageId: !Ref 'MachineImagesAMI'
+      ImageId: !Ref 'AmigoAMI'
       SecurityGroups:
         - !Ref 'SSHSecurityGroup'
         - !Ref 'AppServerSecurityGroup'
