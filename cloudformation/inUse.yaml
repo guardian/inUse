@@ -205,15 +205,7 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       IamInstanceProfile: !Ref 'ServerInstanceProfile'
       UserData: !Base64
-        Fn::Join:
-          - '
-
-            '
-          - - '#!/bin/bash -ev
-
-              '
-            - !Join ['', ['/opt/features/ssh-keys/initialise-keys-and-cron-job.sh
-                  -b github-team-keys -t ', !Ref 'GithubTeamName', ' -l || true
-
-                  ']]
-            - /opt/features/native-packager/install.sh -b composer-dist -t tgz -s
+        'Fn::Base64': !Sub |
+                  #!/bin/bash -ev
+                  aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
+                  dpkg -i /tmp/in-use.deb
