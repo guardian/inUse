@@ -23,8 +23,8 @@ Parameters:
   PublicVpcSubnets:
     Description: Subnets to use in VPC for public EC2 instances eg. subnet-abcd1234
     Type: List<AWS::EC2::Subnet::Id>
-  MachineImagesAMI:
-    Description: AMI id from the machine-images repo
+  AmigoAMI:
+    Description: AMI id from Amigo
     Type: String
   GithubTeamName:
     Description: Github team name, used for giving ssh access to members of the team.

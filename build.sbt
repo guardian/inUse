@@ -1,6 +1,6 @@
 name := "in-use"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala, RiffRaffArtifact, SbtWeb)
+lazy val root = (project in file(".")).enablePlugins(PlayScala, RiffRaffArtifact, SbtWeb, JDebPackaging)
 
 scalaVersion := "2.11.7"
 
@@ -20,7 +20,10 @@ libraryDependencies ++= Seq(
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-riffRaffPackageType := (packageZipTarball in Universal).value
+import com.typesafe.sbt.packager.archetypes.ServerLoader.Systemd
+serverLoading in Debian := Systemd
+
+riffRaffPackageType := (packageBin in Debian).value
 
 def env(key: String): Option[String] = Option(System.getenv(key))
 name in Universal := normalizedName.value
@@ -28,9 +31,18 @@ topLevelDirectory := Some(normalizedName.value)
 riffRaffBuildIdentifier := env("CIRCLE_BUILD_NUM").getOrElse("DEV")
 riffRaffUploadArtifactBucket := Option("riffraff-artifact")
 riffRaffUploadManifestBucket := Option("riffraff-builds")
-riffRaffPackageName := s"editorial-tools:${name.value}"
-riffRaffManifestProjectName := riffRaffPackageName.value
-riffRaffPackageType := (packageZipTarball in config("universal")).value
+riffRaffPackageName := name.value
+riffRaffManifestProjectName := s"editorial-tools:${name.value}"
+riffRaffPackageType := (packageBin in Debian).value
 riffRaffArtifactResources ++= Seq(
-  riffRaffPackageType.value -> s"packages/${name.value}/${name.value}.tgz"
+  baseDirectory.value / "riff-raff.yaml" -> "riff-raff.yaml",
+  riffRaffPackageType.value -> s"${name.value}/${name.value}.deb",
+  baseDirectory.value / "cloudformation" / "inUse.yaml" -> "cloudformation/inUse.yaml"
 )
+javaOptions in Universal ++= Seq(
+  "-Dpidfile.path=/dev/null"
+)
+debianPackageDependencies := Seq("openjdk-8-jre-headless")
+maintainer := "digitial tools team <digitalcms.dev@guardian.co.uk>"
+packageSummary := "inUse"
+packageDescription := """service usage tracking"""
