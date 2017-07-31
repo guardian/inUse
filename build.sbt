@@ -44,5 +44,5 @@ javaOptions in Universal ++= Seq(
 )
 debianPackageDependencies := Seq("openjdk-8-jre-headless")
 maintainer := "digitial tools team <digitalcms.dev@guardian.co.uk>"
-packageSummary := "inUse"
+packageSummary := "in-use"
 packageDescription := """service usage tracking"""
