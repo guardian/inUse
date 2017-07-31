@@ -26,9 +26,6 @@ Parameters:
   AmigoAMI:
     Description: AMI id from Amigo
     Type: String
-  GithubTeamName:
-    Description: Github team name, used for giving ssh access to members of the team.
-    Type: String
   InstanceType:
     Description: The instance type for the database nodes (typically smaller for prePROD)
     Type: String
@@ -207,6 +204,5 @@ Resources:
       UserData: !Base64
         'Fn::Base64': !Sub |
                   #!/bin/bash -ev
-                  /opt/features/ssh-keys/initialise-keys-and-cron-job.sh -b github-team-keys -t ${GithubTeamName} -l || true
                   aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
                   dpkg -i /tmp/in-use.deb
