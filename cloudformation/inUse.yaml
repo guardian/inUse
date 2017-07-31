@@ -29,9 +29,6 @@ Parameters:
   GithubTeamName:
     Description: Github team name, used for giving ssh access to members of the team.
     Type: String
-  GithubTeamName:
-    Description: Github team name, used for giving ssh access to members of the team.
-    Type: String
   InstanceType:
     Description: The instance type for the database nodes (typically smaller for prePROD)
     Type: String
