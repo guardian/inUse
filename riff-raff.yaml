@@ -15,4 +15,4 @@ deployments:
         Recipe: editorial-tools-xenial-java8
         AmigoStage: PROD
         BuiltBy: amigo
-    app: in-use
+    app: inuse
