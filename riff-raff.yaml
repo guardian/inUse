@@ -18,5 +18,4 @@ deployments:
       prependStackToCloudFormationStackName: false
       cloudFormationStackName: inUse
       cloudFormationStackByTags: false
-      templatePath: inUse.yaml
     app: inUse
