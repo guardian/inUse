@@ -16,7 +16,7 @@ deployments:
         AmigoStage: PROD
         BuiltBy: amigo
       prependStackToCloudFormationStackName: false
-        cloudFormationStackName: inUse
-        cloudFormationStackByTags: false
-        templatePath: inUse.yaml
+      cloudFormationStackName: inUse
+      cloudFormationStackByTags: false
+      templatePath: inUse.yaml
     app: inUse
