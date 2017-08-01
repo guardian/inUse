@@ -191,4 +191,5 @@ Resources:
         'Fn::Base64': !Sub |
           #!/bin/bash -ev
           aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
+          sleep 30
           dpkg -i /tmp/in-use.deb
