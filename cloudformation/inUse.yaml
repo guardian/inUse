@@ -23,8 +23,8 @@ Parameters:
   PublicVpcSubnets:
     Description: Subnets to use in VPC for public EC2 instances eg. subnet-abcd1234
     Type: List<AWS::EC2::Subnet::Id>
-  AmigoAMI:
-    Description: AMI id from Amigo
+  AMI:
+    Description: AMI id from Amigo - editorial-tools-xenial-java8
     Type: String
   InstanceType:
     Description: The instance type for the database nodes (typically smaller for prePROD)
@@ -195,14 +195,14 @@ Resources:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
       KeyName: !Ref 'KeyName'
-      ImageId: !Ref 'AmigoAMI'
+      ImageId: !Ref 'AMI'
       SecurityGroups:
         - !Ref 'SSHSecurityGroup'
         - !Ref 'AppServerSecurityGroup'
       InstanceType: !Ref 'InstanceType'
       IamInstanceProfile: !Ref 'ServerInstanceProfile'
       UserData: !Base64
-        'Fn::Base64': !Sub |
-                  #!/bin/bash -ev
-                  aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
-                  dpkg -i /tmp/in-use.deb
+        Fn::Base64: !Sub |
+          #!/bin/bash -ev
+          aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
+          dpkg -i /tmp/in-use.deb
