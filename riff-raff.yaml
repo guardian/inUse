@@ -15,4 +15,8 @@ deployments:
         Recipe: editorial-tools-xenial-java8
         AmigoStage: PROD
         BuiltBy: amigo
-    app: inuse
+      prependStackToCloudFormationStackName: false
+        cloudFormationStackName: inUse
+        cloudFormationStackByTags: false
+        templatePath: inUse.yaml
+    app: inUse
