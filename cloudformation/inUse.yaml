@@ -97,20 +97,6 @@ Resources:
               - arn:aws:s3:::composer-dist/*
       Roles:
         - !Ref 'ServerRole'
-  GetSSHPolicy:
-    Type: AWS::IAM::Policy
-    Properties:
-      PolicyName: GetSSHPolicy
-      PolicyDocument:
-        Statement:
-          - Effect: Allow
-            Action:
-              - s3:GetObject
-              - s3:ListObjects
-            Resource:
-              - arn:aws:s3:::github-team-keys/*
-      Roles:
-        - !Ref 'ServerRole'
   SSHSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -202,7 +188,7 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       IamInstanceProfile: !Ref 'ServerInstanceProfile'
       UserData: !Base64
-        Fn::Base64: !Sub |
+        'Fn::Base64': !Sub |
           #!/bin/bash -ev
           aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
           dpkg -i /tmp/in-use.deb
