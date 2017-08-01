@@ -187,7 +187,7 @@ Resources:
         - !Ref 'AppServerSecurityGroup'
       InstanceType: !Ref 'InstanceType'
       IamInstanceProfile: !Ref 'ServerInstanceProfile'
-      UserData: !Base64
+      UserData:
         'Fn::Base64': !Sub |
           #!/bin/bash -ev
           aws s3 cp s3://composer-dist/flexible/${Stage}/in-use/in-use.deb /tmp
