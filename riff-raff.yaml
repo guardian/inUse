@@ -1,0 +1,21 @@
+regions: [eu-west-1]
+stacks:
+- flexible
+deployments:
+  in-use:
+    type: autoscaling
+    parameters:
+      bucket: composer-dist
+    dependencies:
+      - inuse-ami-update
+  inuse-ami-update:
+    type: ami-cloudformation-parameter
+    parameters:
+      amiTags:
+        Recipe: editorial-tools-xenial-java8
+        AmigoStage: PROD
+        BuiltBy: amigo
+      prependStackToCloudFormationStackName: false
+      cloudFormationStackName: inUse
+      cloudFormationStackByTags: false
+    app: inUse
